@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'blogs/index'
+  get 'sessions/new'
   resources:blogs
   resources:users
+  resources:sessions
 end
