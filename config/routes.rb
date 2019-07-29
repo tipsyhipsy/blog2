@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources:blogs
   resources:users
-  resources:sessions
+  resources:sessions, only:[:new, :create]
 end
