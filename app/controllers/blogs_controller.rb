@@ -7,19 +7,20 @@ class BlogsController < ApplicationController
 
   def new
     if params[:back]
-      @blog = Blog.new(content_params)
+      @blog = Blog.new(blog_params)
     else
       @blog = Blog.new
+
     end
   end
 
   def confirm
-    @blog = Blog.new(content_params)
+    @blog = current_user.blogs.build(blog_params)
     render :new if @blog.invalid?
   end
 
   def creat
-    @blog = Blog.new(content_params)
+    @blog = current_user.blogs.build(blog_params)
     if @blog.save
       flash[:notice] = '投稿しました！'
       redirect_to blogs_path
@@ -33,7 +34,7 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if @blog.update(content_params)
+    if @blog.update(blog_params)
       redirect_to blogs_path
     else
       render 'edit'
@@ -41,20 +42,21 @@ class BlogsController < ApplicationController
   end
 
   def show
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   def destroy
     @blog.destroy
-    redirect_to blogs_path
+    redirect_to blogs_path, notice:'削除しました。'
   end
 
   private
 
-  def content_params
-    params.require(:blog).permit(:content)
+  def blog_params
+    params.require(:blog).permit(:title,:content)
   end
 
   def set_blog
-    @blog = blog.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 end
