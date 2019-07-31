@@ -8,5 +8,10 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  resources :favorites, only: [:create, :destroy]  
+  resources :favorites, only: [:create, :destroy]
+  resources:feeds do
+    collection do
+      post :confirm
+    end
+  end
 end
