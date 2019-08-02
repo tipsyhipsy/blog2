@@ -19,7 +19,7 @@ class BlogsController < ApplicationController
     render :new if @blog.invalid?
   end
 
-  def creat
+  def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
       flash[:notice] = '投稿しました！'

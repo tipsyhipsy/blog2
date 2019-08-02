@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :feeds
-  get 'sessions/new'
+  root 'sessions#new'
   resources:users
   resources:sessions, only:[:new, :create, :destroy]
   resources:blogs do

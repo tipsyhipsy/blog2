@@ -14,7 +14,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/new
   def new
-    if paramus[:back]
+    if params[:back]
     @feed = Feed.new(feed_params)
   else
     @feed = Feed.new

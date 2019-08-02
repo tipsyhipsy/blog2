@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image if @feed.image && @feed.image.url%>
-    <%= f.file_field :image %>
-    <%= f.hidden_field:image_cache %>
+    <%= form.label :image %>
+    <%= form.file_field :image if @feed.image && @feed.image.url%>
+    <%= form.file_field :image %>
+    <%= form.hidden_field:image_cache %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= form.submit %>
   </div>
 <% end %>
